@@ -1,0 +1,16 @@
+<h2><%= @post.title %> by <%= @post.author.username %></h2>
+
+<section >
+  <p> Content: <br>
+    <%= @post.content %> </p>
+</section>
+
+<h4>Subs</h4>
+
+<ul>
+  <% @post.subs.each do |sub| %>
+    <li> <%= link_to sub.title, sub_url(sub) %> </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_post_url(@post) %>

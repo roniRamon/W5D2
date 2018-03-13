@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redditonrails</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+    <style>
+    section {
+      border: solid black 1px;
+       margin: 15px;
+       padding: 20px;
+    }
+    </style>
+  </head>
+
+  <body>
+    <% if is_login? %>
+      <%= current_user.username  %><br>
+      <%= link_to 'Create a Sub!', new_sub_url %><br>
+      <%= link_to 'All Subs', subs_url %><br>
+      <%= button_to 'Sign Out', session_url, method: :delete %>
+    <% else %>
+      <%= link_to 'Sign In', new_session_url %>
+    <% end %>
+
+
+    <% flash[:errors].try(:each) do |error| %>
+      <%= error %>
+    <% end %>
+    <section>
+      <%= yield %>
+    </section>
+
+  </body>
+</html>
